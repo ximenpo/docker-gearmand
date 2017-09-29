@@ -10,6 +10,7 @@ RUN     yum         install -y  gcc gcc-c++ make        \
         &&  curl    -L -O   https://github.com/gearman/gearmand/releases/download/${GEARMAN_VERSION}/gearmand-${GEARMAN_VERSION}.tar.gz \
         &&  tar xzf gearmand-${GEARMAN_VERSION}.tar.gz  \
         &&  cd      gearmand-${GEARMAN_VERSION}         \
+        &&  sed -i 's/unique_size= 2;/unique_size= 1;/' libgearman-server/plugins/protocol/http/protocol.cc \
         &&  ./configure && make && make install         \
         &&  cd  ~                                       \
         &&  rm  -rf gearmand-${GEARMAN_VERSION}         \
